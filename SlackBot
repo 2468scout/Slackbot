@@ -36,7 +36,7 @@ function isRequesting(myMessage) {
 };
 
 
-/*
+/* THIS IS FROM A DISCORD BOT BUT BASICALLY CHECKS FOR THE NUMBER THING I THINK
 
 					let args = input.split(" ").slice(2);
 					//tried to parse the command into an integer
