@@ -27,5 +27,4 @@ The Slack Bot is a work in progress. Here is where we will list future and curre
 
 ### Who do I talk to? ###
 
-* KatyiPup is the main developer of RoboScout(Patent Pending lol)
-* 
+* KatyiPup is the main developer of RoboScout(Patent Pending lol). Number: 512-348-1465 (I'll reply more through text and can keep it more organized this way. I dunno what you'd text me about tho lol)
