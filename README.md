@@ -1,29 +1,31 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+The Slack Bot is a work in progress. Here is where we will list future and current functions. 
 
-### What is this repository for? ###
+### What is this repository for and about? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* FRC Team 2468 (Appreciate) scouting app integration with Slack. 
+* Super duper pre alpha alpha pre 0.0.01
+* Kate is hosting the bot for now, so all code is tested through her. Technically speaking anyone could run the bot with the code, but need the following extra things:
+* * Node.Js
+* * in console/terminal/command prompt: npm install slackbots
 
-### How do I get set up? ###
+### What do we want? ### NOTE TO IAN HEY UMM PUT WHAT WE NEED TO DO HERE THIS IS OUR TO DO LIST
+* Slack Bot (duh)
+* Connection with scouting server/client? (plz elaborate here)
+* The ability to request team stats through Slack
+* the ability to reply AT ALL to certain prompts
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### What needs to be tested? (code written, not tested) ###
 
-### Contribution guidelines ###
+* 
 
-* Writing tests
-* Code review
-* Other guidelines
+### What has already been implemented? (Tried and Tested) ###
+
+* The bot is on the server
+* bot sends a message on successful startup
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* KatyiPup is the main developer of RoboScout(Patent Pending lol)
+* 
