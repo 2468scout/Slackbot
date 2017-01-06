@@ -7,8 +7,8 @@ The Slack Bot is a work in progress. Here is where we will list future and curre
 * FRC Team 2468 (Appreciate) scouting app integration with Slack. 
 * Super duper pre alpha alpha pre 0.0.01
 * Kate is hosting the bot for now, so all code is tested through her. Technically speaking anyone could run the bot with the code, but need the following extra things:
-** Node.Js
-** in console/terminal/command prompt: npm install slackbots
+\* * Node.Js
+\* * in console/terminal/command prompt: npm install slackbots
 
 ### What do we want? ### NOTE TO IAN HEY UMM PUT WHAT WE NEED TO DO HERE THIS IS OUR TO DO LIST
 * Slack Bot (duh)
