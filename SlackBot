@@ -16,9 +16,9 @@ bot.on('start', function() {
 
 //STUFF
 function onMessage(myMessage, myArray){
-	if(
-	isChat === true &&
-	isRequesting === true
+		if(
+	this.isChat(message) &&
+	this.isRequesting(message)
 )
 {
 	bot.postMessageToGroup('scouting_app_testing', 'success.')
