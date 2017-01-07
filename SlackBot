@@ -15,27 +15,6 @@ bot.on('start', function() {
 
 
 //STUFF
-function onMessage(myMessage, myArray){
-		if(
-	this.isChat(message) &&
-	this.isRequesting(message)
-)
-{
-	bot.postMessageToGroup('scouting_app_testing', 'success.')
-}
-};
-
-function isChat(myMessage){
-return message.type === 'message' && Boolean(message.text);
-};
-
-
-
-function isRequesting(myMessage) {
-	return message.text.toLowerCase().indexOf('testing') > -1
-};
-
-
 /* THIS IS FROM A DISCORD BOT BUT BASICALLY CHECKS FOR THE NUMBER THING I THINK
 
 					let args = input.split(" ").slice(2);
@@ -61,7 +40,7 @@ function isRequesting(myMessage) {
 
 bot.on("message", function(data){
 	//var input = message.content.toUpperCase();
-if(message.text === "FIRST TEST"){
+if(data.text === "TEST"){
 	bot.postMessageToGroup('scouting_app_testing',"Success.");
 }
 
