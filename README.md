@@ -14,6 +14,7 @@ The Slack Bot is a work in progress. Here is where we will list future and curre
 * Slack Bot (duh)
 * Connection with scouting server/client? (plz elaborate here)
 * The ability to request team stats through Slack
+* make it respond to when you type "#somenumber" and make it remember the number so it can fetch that team's data
 
 ### What needs to be tested? (code written, not tested) ###
 
