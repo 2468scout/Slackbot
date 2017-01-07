@@ -14,7 +14,8 @@ The Slack Bot is a work in progress. Here is where we will list future and curre
 * Slack Bot (duh)
 * Connection with scouting server/client? (plz elaborate here)
 * The ability to request team stats through Slack
-* make it respond to when you type "#somenumber" and make it remember the number so it can fetch that team's data
+* So you need it to basically send a lot of the data for a team whenever someone sends "#teamnumber" in any message 
+* * for example if I was talking to someone and said "Let's look at #2468 stats" it would pop up the stats for team 2468
 
 ### What needs to be tested? (code written, not tested) ###
 
@@ -25,6 +26,10 @@ The Slack Bot is a work in progress. Here is where we will list future and curre
 * The bot is on the server
 * bot sends a message on successful startup
 * bot responds to prompts
+* lets users send info through the ~add info command
+* lets users see sent info through ~intel
+* let's verified users remove or clear intel array through ~robostats removal [#] and ~submitted
+* gives a list of userIDs who tried to use "verified" commands but weren't "verified" (~verifying)
 
 ### Who do I talk to? ###
 
