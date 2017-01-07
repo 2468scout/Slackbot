@@ -92,7 +92,7 @@ else if (input === "~submitted")
 		}
 }
 
-else if(input.startsWith("robostats removal")){
+else if(input.startsWith("~robostats removal")){
 	let args = input.split(" ").slice(2);
 			//tried to parse the command into an integer
 			let intelId = Number.parseInt(args[0]);
