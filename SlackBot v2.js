@@ -5,10 +5,12 @@ var settings = {
     token: 'xoxb-123980065522-isdHsz6aCBfcwTrT4XcIjhFb',
     name: 'robostats'
 };
+
 var bot = new Bot(settings);
 var intel = [];
 var verified = ["U2CLWCW7L", "U2CLC69U6", "U2CL9P7QU"];
 var trying = [];
+var reply = ""
 
 bot.on('start', function() {
    // bot.postMessageToChannel('some-channel-name', 'Hello channel!');
@@ -27,8 +29,8 @@ function isVerified(userID){
 	}
 	return false;
 }
-
-function findIntel(myInfo, myIntel){
+//currently not used; will be the names to get stuff from server lol it doesn't actually do anything or work for anything rn.
+function findStats(myInfo, myStats){
 	for(var i=0; i<myQueue.length; i++){
 		if(myQueue[i].indexOf(myUser) === 0){
 			return i;
@@ -36,16 +38,52 @@ function findIntel(myInfo, myIntel){
 	}
 	return -1;
 }
+//need one to find what chat a message is posted in
+function replyWhere(data){
+	if(data.channels !== -1){
+		let channel = data.channels
+		bot.postMessageToChannel(channel.toString, reply)
+	}
+	else if(data.groups !== -1){
+		let group = data.groups
+		return typeof data.groups
+		bot.postMessageToGroup(group.toString, reply)
+	}
 
+}
 
-//might work
+//testing stuff IT DOESNT WORK WPUEHWFIDSJ
 bot.on("message", function(data){
 	var input = data.text;
 if(input === "HELLO PLZ"){
 	trying.push(data.user)
-	bot.postMessageToGroup("scouting_app_testing", "hi!")
+	reply = "working!"
+	replyWhere(data)
+	
+}
+//main function
+if(input.indexOf("robostats #") !== -1){
+	let args = input.split(" ").slice(2);
+			//tried to parse the command into an integer
+			let statsId = Number.parseInt(args[0]);
+			//verifies if its an integer
+			if(Number.isInteger(statsId)) {
+				//NEED TO CHANGE\/ (checks to see if the int is within the queue length) to CHECKS TO SEE IF VALID NUMBER
+				if (statsId <= intel.length) {
+					//removes thing. needs to change to gives the thing
+					intel.splice((intelId - 1), 1);
+					bot.postMessageToGroup("scouting_app_testing", "Stats for Team " + statsId + " have been targeted! katakatakata...this is it! (this is why you don't put Kate in charge of dialogue)");
+				} else {
+					bot.postMessageToGroup("scouting_app_testing", "There's...nothing?! We either don't have information on them or they don't exist. Spooky.");
+				}
+			} else {
+						bot.postMessageToGroup("scouting_app_testing", "Sorry, you need to say a number to remove it.");
+					}
 }
 
+
+
+//fun extra features woo
 else if (input.startsWith("~add info"))
 {
 	var information = input.substring(10,9999);
@@ -75,7 +113,7 @@ else if (input.indexOf("~intel") === 0)
 		}
 	}
 
-else if (input === "~submitted")
+else if (input === "~read")
 	{
 	if(isVerified(data.user) === 0)
 		{
@@ -122,6 +160,5 @@ else if(input === "~verifying"){
 	bot.postMessageToGroup("scouting_app_testing", "This is the list of those who tried to use a verified only command without success.\n" + trying.join("\n"));
 }
 });
-
 
 
