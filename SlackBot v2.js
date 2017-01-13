@@ -7,15 +7,19 @@ var settings = {
 };
 
 var bot = new Bot(settings);
-var intel = ["place","holder","test","stuff","delete","later"];
+var intel = ["place", "holding", "stuff", "hi"];
 var verified = ["U2CLWCW7L", "U2CLC69U6", "U2CL9P7QU"];
 var trying = [];
-var reply = ""
+var reply = "";
 
 bot.on('start', function() {
+	 var params = {
+        as_user: true
+    };
+
    // bot.postMessageToChannel('some-channel-name', 'Hello channel!');
-   // bot.postMessageToUser('some-username', 'hello bro!');
-    bot.postMessageToGroup('scouting_app_testing', 'hello group chat!');
+   	//bot.postMessageToUser('kate_denier', "message");
+    bot.postMessageToGroup('scouting_app_testing', 'hello group chat!', params);
 });
 
 
@@ -39,17 +43,49 @@ function findStats(myInfo, myStats){
 	return -1;
 }
 
+function findInArray(myArray, myMessage){
+	for(var i=0; i<myArray.length; i++){
+		if(myArray[i].indexOf(myMessage) === 0){
+			return i;
+		}
+	}
+	return -1;
+}
+
+/*not working or not tested
+$(function(){
+ $('#search').on('keyup', function(e){
+   if(e.keyCode === 13) {
+     var parameters = { search: $(this).val() };
+       $.get( '/searching',parameters, function(data) {
+       $('#results').html(data);
+     });
+    };
+ });
+});
+*/
+
 //working now
 function findChannel(channelId){
+		var params = {
+        as_user: true
+    };
 	switch(channelId){
 		case "G3MENRSHH":
-		bot.postMessageToGroup('scouting_app_testing', reply);
+		bot.postMessageToGroup('scouting_app_testing', reply, params);
 		break;
 		case "C3MJX9J2G":
-		bot.postMessageToChannel('scouting_testing', reply);
+		bot.postMessageToChannel('scouting_testing', reply, params);
 		break;
+		case "C23TWDTKL":
+		bot.postMessageToChannel('general', reply, params);
+		break;
+		case "C29NGB13M":
+		bot.postMessageToChannel('scouting_all',reply,params);
+		break;
+		case "C2CM03Z8F":
+		bot.postMessageToChannel('scouting_app',reply,params);
 		default:
-		console.log("nope")
 		break;
 	}
 }
@@ -63,11 +99,12 @@ bot.on("message", function(data){
 if(input === "HELLO PLZ"){
 	reply = "working!"
 	findChannel(r);
-	
 }
 //main function
 if(input.indexOf("robostats") !== -1){
-	let args = input.split(" ").slice(1);
+	let index = input.indexOf("robostats");
+	let pika = input.substring(index, 9999)
+	let args = pika.split(" ").slice(1);
 			//tried to parse the command into an integer
 			let statsId = Number.parseInt(args[0]);
 			//verifies if its an integer
@@ -94,7 +131,7 @@ if(input.indexOf("robostats") !== -1){
 else if (input.startsWith("~add info"))
 {
 	var information = input.substring(10,9999);
-	var index = intel.indexOf(" [" + information + "]\n");
+	var index = findInArray(intel," [" + information + "]\n");
 	var infoId = index + 1;
 
 			intel.push(" [" + information + "]\n");
@@ -103,7 +140,7 @@ else if (input.startsWith("~add info"))
 			findChannel(r);
 }
 
-else if (input.indexOf("~intel") === 0)
+else if (input === ("~intel"))
 	{
 		if (intel.length === 0)
 		{
@@ -161,18 +198,21 @@ else if(input.startsWith("~info removal")){
 					findChannel(r);
 				}
 			} else {
-						bot.postMessageToGroup("scouting_app_testing", "Sorry, you need to say a number to remove it.");
+						reply = "Sorry, you need to say a number to remove it.";
+						findChannel(r);
 					}
 		else{
 	trying.push(data.user)
-	bot.postMessageToGroup("scouting_app_testing", "You aren't verified for this role. Contact @kate_denier if you think this is a mistake.");
+	reply = "You aren't verified for this role. Contact @kate_denier if you think this is a mistake.";
+	findChannel(r);
 		}
 }
 
 
 
 else if(input === "~verifying"){
-	bot.postMessageToGroup("scouting_app_testing", "This is the list of those who tried to use a verified only command without success.\n" + trying.join("\n"));
+	reply = "This is the list of those who tried to use a verified only command without success.\n" + trying.join("\n");
+	findChannel(r);
 }
 });
 
