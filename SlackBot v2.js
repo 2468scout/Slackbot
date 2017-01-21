@@ -2,7 +2,7 @@ var Bot = require('slackbots');
 
 // create a bot
 var settings = {
-    token: 'xoxb-123980065522-isdHsz6aCBfcwTrT4XcIjhFb',
+    token: 'xxxxplaceholderxxxx',
     name: 'robostats'
 };
 
@@ -33,15 +33,6 @@ function isVerified(userID){
 	}
 	return false;
 }
-//currently not used; will be the names to get stuff from server lol it doesn't actually do anything or work for anything rn.
-function findStats(myInfo, myStats){
-	for(var i=0; i<myStats.length; i++){
-		if(myStats[i].indexOf(myInfo) === 0){
-			return i;
-		}
-	}
-	return -1;
-}
 
 function findInArray(myArray, myMessage){
 	for(var i=0; i<myArray.length; i++){
@@ -52,18 +43,24 @@ function findInArray(myArray, myMessage){
 	return -1;
 }
 
-/*not working or not tested
-$(function(){
- $('#search').on('keyup', function(e){
-   if(e.keyCode === 13) {
-     var parameters = { search: $(this).val() };
-       $.get( '/searching',parameters, function(data) {
-       $('#results').html(data);
-     });
-    };
- });
-});
-*/
+//currently not used; will be the names to get stuff from server lol it doesn't actually do anything or work for anything rn.
+function findStats(theUrl){
+	var request = require('request');
+	request(theUrl, function (error, response, body) {
+    	if (!error && response.statusCode == 200) {
+
+        	console.log(body); // Show the HTML for the homepage.
+        	//reply = body;
+        	reply = "We testing fam";
+    	}
+	});
+}
+
+//not working or not tested
+//GET REQUEST FUNCTION
+
+
+
 
 //working now
 function findChannel(channelId){
@@ -81,10 +78,10 @@ function findChannel(channelId){
 		bot.postMessageToChannel('general', reply, params);
 		break;
 		case "C29NGB13M":
-		bot.postMessageToChannel('scouting_all',reply,params);
+		bot.postMessageToChannel('scouting_all', reply, params);
 		break;
 		case "C2CM03Z8F":
-		bot.postMessageToChannel('scouting_app',reply,params);
+		bot.postMessageToChannel('scouting_app', reply, params);
 		default:
 		break;
 	}
@@ -92,16 +89,26 @@ function findChannel(channelId){
 
 
 bot.on("message", function(data){
-	var input = data.text;
+	var baseInput = data.text.toString();
+	var input = baseInput.toLowerCase();
 	var r = data.channel;
 
 	//basic testing phrase
-if(input === "HELLO PLZ"){
-	reply = "working!"
+if(input === "hello"){
+	reply = "ni hao!"
 	findChannel(r);
 }
+
+//testing
+if(input === "t"){
+	reply = findStats("http://httpbin.org/");
+	reply += " ians note"
+	findChannel(r);
+}
+
+
 //main function
-if(input.indexOf("robostats") !== -1){
+else if(input.indexOf("robostats") !== -1){
 	let index = input.indexOf("robostats");
 	let pika = input.substring(index, 9999)
 	let args = pika.split(" ").slice(1);
@@ -116,7 +123,7 @@ if(input.indexOf("robostats") !== -1){
 					findChannel(r);
 					//also send the data/for now the array thing
 				} else {
-					reply = "There's...nothing?! We either don't have information on them, or they don't exist. Spooky.";
+					reply = "There's...nothing?! We either don't have information on them, or they don't exist. Spooky. Or the most likely, Kate messed up the code again. Oops.";
 					findChannel(r);
 				}
 			} else {
