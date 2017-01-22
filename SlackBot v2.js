@@ -2,7 +2,7 @@ var Bot = require('slackbots');
 
 // create a bot
 var settings = {
-    token: 'xxxxplaceholderxxxx',
+    token: 'xoxb-123980065522-isdHsz6aCBfcwTrT4XcIjhFb',
     name: 'robostats'
 };
 
@@ -43,18 +43,7 @@ function findInArray(myArray, myMessage){
 	return -1;
 }
 
-//currently not used; will be the names to get stuff from server lol it doesn't actually do anything or work for anything rn.
-function findStats(theUrl){
-	var request = require('request');
-	request(theUrl, function (error, response, body) {
-    	if (!error && response.statusCode == 200) {
 
-        	console.log(body); // Show the HTML for the homepage.
-        	//reply = body;
-        	reply = "We testing fam";
-    	}
-	});
-}
 
 //not working or not tested
 //GET REQUEST FUNCTION
@@ -89,10 +78,10 @@ function findChannel(channelId){
 
 
 bot.on("message", function(data){
-	var baseInput = data.text.toString();
+	var baseInput = data.text.toString(); 
 	var input = baseInput.toLowerCase();
 	var r = data.channel;
-
+   
 	//basic testing phrase
 if(input === "hello"){
 	reply = "ni hao!"
@@ -101,9 +90,9 @@ if(input === "hello"){
 
 //testing
 if(input === "t"){
-	reply = findStats("http://httpbin.org/");
-	reply += " ians note"
+	findStats("https://httpbin.org/ip");
 	findChannel(r);
+
 }
 
 
@@ -114,25 +103,33 @@ else if(input.indexOf("robostats") !== -1){
 	let args = pika.split(" ").slice(1);
 			//tried to parse the command into an integer
 			let statsId = Number.parseInt(args[0]);
+			var subUrl = "/ip" + statsId;
+
+			function findStats(theUrl){
+	var request = require('request');
+	request(theUrl, function (error, response, body) {
+    	if (!error && response.statusCode == 200) {
+        	console.log(body); // Show the HTML for the homepage.
+        	reply = "Stats for Team " + statsId + " have been targeted! katakatakata...this is it! (this is why you don't put Kate in charge of dialogue)\n" + body;
+        		findChannel(r);
+    	}
+    	else {
+    		reply = "There's...nothing?! We either don't have information on them, or they don't exist. Spooky. Or the most likely, Kate messed up the code again. Oops.";
+					findChannel(r);
+    				}
+				});
+			}
 			//verifies if its an integer
 			if(Number.isInteger(statsId)) {
-				//NEED TO CHANGE\/ (checks to see if the int is within the queue length) to CHECKS TO SEE IF VALID NUMBER
-				if (statsId <= intel.length) { //it'll be findStats(statsId)
-					//removes thing\/ needs to change to gives the thing
-					reply = "Stats for Team " + statsId + " have been targeted! katakatakata...this is it! (this is why you don't put Kate in charge of dialogue)\n" + intel[statsId - 1].toString();
-					findChannel(r);
-					//also send the data/for now the array thing
-				} else {
-					reply = "There's...nothing?! We either don't have information on them, or they don't exist. Spooky. Or the most likely, Kate messed up the code again. Oops.";
-					findChannel(r);
-				}
-			} else {
-					reply = "Sorry, you need to say a number to remove it.";
+					findStats("https://httpbin.org" + subUrl);
+				} 
+			else {
+					reply = "Sorry, you need to say a number.";
 					findChannel(r);
 					}
 }
 
-
+  
 
 //fun extra features woo
 else if (input.startsWith("~add info"))
