@@ -21,7 +21,8 @@ The Slack Bot is a work in progress. Here is where we will list future and curre
 
 ### What needs to be tested? (code written, not tested) ###
 
-* 
+* robostats [team number] now connects through http get request. It's set up and ready to connect with Lauren's server and list desired data.
+* * note: If it doesn't work it's because Ian messed with the code.
 
 ### What has already been implemented? (Tried and Tested) ###
 
@@ -32,7 +33,6 @@ The Slack Bot is a work in progress. Here is where we will list future and curre
 * lets users see sent info through ~intel
 * let's verified users remove or clear intel array through ~robostats removal [#] and ~submitted
 * gives a list of userIDs who tried to use "verified" commands but weren't "verified" (~verifying)
-* robostats [team number] now connects through http get request. It's set up and ready to connect with Lauren's server.
 
 ### Who do I talk to? ###
 
