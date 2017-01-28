@@ -18,11 +18,12 @@ bot.on('start', function() {
 	 var params = {
         as_user: true
     }; //makes the bot post as the bot user you set it up as
-    bot.postMessageToGroup('scouting_app_testing', 'hello group chat!', params);
+    bot.postMessageToUser('kate_denier', "I'm on!", params);
 });
 
 
-//checks if user can do certain commands (basically mod status for the bot)
+//THESE ARE THE FUNCTIONS
+//checks if user can do certain commands (basically mod status to the bot)
 function isVerified(userID){
 	for(var i=0; i<verified.length; i++){ //each entry in queue
 		if(verified[i].toString().indexOf(userID.toString()) === 0){ //if it matches any of the items in the array
@@ -68,6 +69,8 @@ function findChannel(channelId){ //channelId = the AlphaNumeric ID Code for a ch
 	}
 }
 
+
+
 //when a message is sent what does the bot do? This.
 bot.on("message", function(data){
 	var baseInput = data.text.toString(); //takes the sent message and makes it a string
@@ -76,7 +79,7 @@ bot.on("message", function(data){
    
 	//basic testing phrase
 if(input === "ping"){ //if the message sent is "ping"
-	reply = "pong!" //the bot will reply with "pong!" wow technology plz if u need to see this you should understand at least this
+	reply = "pong!" //the bot will reply with "pong!" wow technology plz u should understand at least this part kate
 	findChannel(r);
 }
 
@@ -125,13 +128,13 @@ else if(input.indexOf("robostats") !== -1){
 else if (input.startsWith("~add info"))
 	//lets users submit random info that might be useful. Basically just a test array.
 {
-	var information = input.substring(10,9999);
-	var index = findInArray(intel," [" + information + "]\n");
-	var infoId = index + 1;
+	var information = input.substring(10,9999); //the stuff after "~add info"
+	var index = findInArray(intel," [" + information + "]\n"); //the index number it is in the array after it's put in
+	var infoId = index + 1; //index + 1, so the first item is labeled as #1 instead of #0. Does not change the actual position in the array.
 
-			intel.push(" [" + information + "]\n");
-			intel[index] = "#" + infoId + " [" + information + "]\n"
-			reply = "Thanks!";
+			intel.push(" [" + information + "]\n"); //puts the information into the array.
+			intel[index] = "#" + infoId + " [" + information + "]\n" //makes the info numbered
+			reply = "Thanks!"; //says thanks
 			findChannel(r);
 }
 
@@ -145,7 +148,7 @@ else if (input === ("~intel"))
 		}
 		else
 		{
-			var intelstring = "";
+			var intelstring = ""; //intel becoming a string
 			for(var i=0; i<intel.length;i++)
 			{
 				var myIndex = i + 1;
@@ -159,11 +162,11 @@ else if (input === ("~intel"))
 else if (input === "~clear")
 	//clears the intel array
 	{
-	if(isVerified(data.user) === 0) //if they are registered to use these commands
+	if(isVerified(data.user) === true) //if they are registered to use these commands
 		{
-		if(intel.length > 0) {
-			intel.length = 0;
-			reply = "Good job! It's empty now.";
+		if(intel.length !== 0) { //if there's stuff in the array
+			intel.length = 0; //deletes all the entries in intel
+			reply = "Good job! It's empty now!";
 			findChannel(r);
 			}
 		else //if the array is empty already
@@ -171,7 +174,7 @@ else if (input === "~clear")
 		findChannel(r);
 		}
 	else{ //if they aren't registered for using these commands
-		trying.push(data.user)
+		trying.push(data.user) //puts the user id in an array
 		reply = "You can't right now!";
 		findChannel(r);
 		}
@@ -210,6 +213,8 @@ else if(input.startsWith("~info removal")){
 
 else if(input === "~verifying"){
 	reply = "This is the list of those who tried to use a specialized command without success.\n" + trying.join("\n");
+	if(trying.length === 0)
+		reply += "There's nobody."
 	findChannel(r);
 }
 });
