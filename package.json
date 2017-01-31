@@ -1,0 +1,24 @@
+{
+  "name": "slackbot-code",
+  "version": "1.0.0",
+  "description": "Slackbot npm requirements",
+  "main": "SlackBot v2.js",
+  "dependencies": {
+    "request": "^2.79.0",
+    "slackbot": "^0.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "TestStuff"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2468scout/Slackbot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2468scout/Slackbot/issues"
+  },
+  "homepage": "https://github.com/2468scout/Slackbot#readme"
+}
