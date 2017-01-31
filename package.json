@@ -5,7 +5,7 @@
   "main": "SlackBot v2.js",
   "dependencies": {
     "request": "^2.79.0",
-    "slackbot": "^0.0.2"
+    "slackbots": "^1.0.2"
   },
   "devDependencies": {},
   "scripts": {
