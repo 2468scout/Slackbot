@@ -1,9 +1,10 @@
 var Bot = require('slackbots'); //lets you connect to RTM API from Slack
 var request = require('request'); //for http requests
 var fs = require('fs');
+
 //setting up a bot
 var settings = {
-	token: fs.readFile('slackToken.txt'),
+	token: fs.readFileSync('slackToken.txt', 'utf8'),
     name: 'robostats'
 };
 var bot = new Bot(settings);
