@@ -84,7 +84,7 @@ if(input === "ping"){ //if the message sent is "ping"
 }
 
 //main function (getting the data)
-else if(input.indexOf("robostats") !== -1){
+else if(input.indexOf("robostats") !== -1){ //if any message has robostats anywhere in it
 	let index = input.indexOf("robostats"); //where the person typed robostats in their message
 	let pika = input.substring(index, 9999) //the rest of the message after that
 	let args = pika.split(" ").slice(1); //splits the messages by spaces instead of characters and takes the first thing after "robostats"
